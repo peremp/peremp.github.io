@@ -1,0 +1,116 @@
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.6/dist/vue.js"></script>
+  <script src="./vue-light-gallery.umd.js" charset="utf-8"></script>
+  <title>Vue Gallery</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <style>
+    body {
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      padding-top: 50px;
+      background-color: #421c1c;
+      color: #FFF;
+    }
+    h1, h2, p {
+      font-weight: normal;
+      margin: 0;
+    }
+    .subtitle {
+      margin-bottom: 20px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 40px 0 0 0;
+    }
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .thumb {
+      display: inline-block;
+      margin: 10px;
+      cursor: pointer;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 30px;
+      border: 1px solid #fff3f3;
+      color: #fff3f3;
+      text-decoration: none;
+      border-radius: 2px;
+    }
+    .btn:hover {
+      background: #fff3f3;
+      color: #421c1c;
+    }
+  </style>
+</head>
+
+<body>
+<div id="app" class="container">
+  <h1>vue-light-gallery</h1>
+  <p class="subtitle">VueJS image gallery. No dependencies.</p>
+  <a href="https://github.com/peremp/vue-light-gallery" class="btn">
+    View on Github
+  </a>
+  <light-gallery
+    :images="images"
+    :index="index"
+    :disable-scroll="true"
+    @close="index = null"
+  ></light-gallery>
+  <ul>
+    <!-- Thumbnails -->
+    <li
+      v-for="(image, imageIndex) in [
+        'img/thumb_1.jpeg',
+        'img/thumb_2.jpeg',
+        'img/thumb_3.jpeg',
+        'img/thumb_4.jpeg',
+      ]"
+      :key="imageIndex"
+      class="thumb"
+      @click="index = imageIndex"
+    >
+      <img :src="image">
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+  Vue.use(VueLightGallery);
+
+  new Vue({
+    el: '#app',
+    data: function () {
+      return {
+        images: [
+          {
+            title: 'Big vulture flying',
+            url: 'img/1.jpeg',
+          },
+          {
+            title: 'Frog soak on water',
+            url: 'img/2.jpeg',
+          },
+          {
+            title: 'Fawn in warm autumn sun',
+            url: 'img/3.jpeg',
+          },
+          {
+            title: 'Mountain goat on the rocks',
+            url: 'img/4.jpeg',
+          },
+        ],
+        index: null
+      };
+    },
+  });
+</script>
+
+</body>
+</html>
